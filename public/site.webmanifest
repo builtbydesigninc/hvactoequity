@@ -1,0 +1,22 @@
+{
+  "name": "The Peptide Market",
+  "short_name": "Peptide Market",
+  "description": "Premium peptide solutions and TRT therapy with board-certified physicians",
+  "icons": [
+    {
+      "src": "/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0B0B0B",
+  "background_color": "#0B0B0B",
+  "display": "standalone",
+  "start_url": "/"
+}
+
