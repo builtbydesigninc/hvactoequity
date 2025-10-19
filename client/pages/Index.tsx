@@ -310,7 +310,7 @@ export default function Index() {
               initial={{ opacity: 0, y: 30 }}
               animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="font-clash font-medium leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-[79.008px] text-center bg-gradient-to-r from-white via-[#4A90E2] to-white bg-clip-text text-transparent"
+              className="font-clash font-medium leading-tight text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[79.008px] text-center bg-gradient-to-r from-white via-[#4A90E2] to-white bg-clip-text text-transparent"
             >
               {activeView === "sellers" 
                 ? "Scale Your HVAC Business to 8-Figures and Beyond"
@@ -334,11 +334,13 @@ export default function Index() {
               transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
               className="flex flex-col gap-4 items-center mt-4"
             >
-              <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] flex items-center px-8 py-4 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-                <p className="font-satoshi font-bold text-lg sm:text-xl text-white">
-                  {activeView === "sellers" ? "GET YOUR GROWTH ROADMAP" : "VIEW AVAILABLE OPPORTUNITIES"}
-                </p>
-              </button>
+              <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] flex items-center px-8 py-4 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                  <p className="font-satoshi font-bold text-lg sm:text-xl text-white">
+                    {activeView === "sellers" ? "GET YOUR GROWTH ROADMAP" : "VIEW AVAILABLE OPPORTUNITIES"}
+                  </p>
+                </button>
+              </a>
             </motion.div>
           </div>
         </div>
@@ -564,9 +566,11 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
-            </button>
+            <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
+              <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+              </button>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -616,9 +620,11 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
-            </button>
+            <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
+              <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+              </button>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -672,9 +678,11 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
-            </button>
+            <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
+              <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+              </button>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -746,9 +754,11 @@ export default function Index() {
             <p className="text-[#E5E5E5] font-satoshi text-lg sm:text-xl mb-6">
               Still Have Questions? Our Team Is Here To Help.
             </p>
-            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
-            </button>
+            <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
+              <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+              </button>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -782,9 +792,11 @@ export default function Index() {
                     placeholder="Email"
                     className="w-full px-6 py-[21px] rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] text-white placeholder:text-[#666] font-satoshi text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-[#4A5568]"
                   />
-                  <button className="w-full bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-6 py-4 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-                    <span className="font-satoshi font-bold text-base sm:text-lg text-white">Sign up for the newsletter today</span>
-                  </button>
+                  <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer" className="w-full">
+                    <button className="w-full bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-6 py-4 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                      <span className="font-satoshi font-bold text-base sm:text-lg text-white">Sign up for the newsletter today</span>
+                    </button>
+                  </a>
                 </div>
                 <p className="text-[#7A8196] font-satoshi text-sm">
                   By creating an account using email, I agree to the{" "}
