@@ -1,17 +1,22 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Refund() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0B0B0B] text-white">
       {/* Header */}
       <header className="border-b border-[#222222] px-6 sm:px-8 md:px-12 py-6">
         <div className="max-w-5xl mx-auto">
-          <Link to="/">
-            <img
-              src="/logos/dark.svg"
-              alt="the peptide market"
-              className="h-8 sm:h-10 w-auto"
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/assets/logo.png" 
+              alt="HVAC to Equity" 
+              className="h-10 sm:h-12 w-auto"
             />
           </Link>
         </div>
@@ -26,7 +31,7 @@ export default function Refund() {
             transition={{ duration: 0.6 }}
             className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-4xl sm:text-5xl md:text-6xl mb-4"
           >
-            Return & Refund Policy
+            Service Agreement & Refund Policy
           </motion.h1>
           
           <motion.p
@@ -48,29 +53,29 @@ export default function Refund() {
             <div>
               <h2 className="text-2xl font-helvetica font-bold text-white mb-4">Our Commitment to You</h2>
               <p className="text-[#E5E5E5] font-helvetica leading-relaxed mb-4">
-                At The Peptide Market, your satisfaction and safety are our top priorities. We maintain the highest quality standards for all peptide products and strive to ensure you receive effective treatments. However, due to the medical nature of our products, specific conditions apply to returns and refunds.
+                At HVAC to Equity, your satisfaction and success are our top priorities. We maintain the highest standards for all advisory services and strive to ensure you achieve your business goals. Due to the nature of consulting services, specific conditions apply to refunds.
               </p>
             </div>
 
             {/* Section 2 */}
             <div>
-              <h2 className="text-2xl font-helvetica font-bold text-white mb-4">Consultation Fees</h2>
+              <h2 className="text-2xl font-helvetica font-bold text-white mb-4">Strategy Session Fees</h2>
               <p className="text-[#E5E5E5] font-helvetica leading-relaxed mb-4">
-                Initial consultations with our board-certified physicians are provided at <strong>$0 cost</strong>. There are no refunds for consultation fees as we do not charge for them.
+                Initial strategy sessions with our business advisors are provided at <strong>$0 cost</strong>. There are no refunds for strategy sessions as we do not charge for them.
               </p>
             </div>
 
             {/* Section 3 */}
             <div>
-              <h2 className="text-2xl font-helvetica font-bold text-white mb-4">Product Returns & Refunds</h2>
+              <h2 className="text-2xl font-helvetica font-bold text-white mb-4">Service Refunds</h2>
               <p className="text-[#E5E5E5] font-helvetica leading-relaxed mb-4">
-                Due to FDA regulations and safety protocols governing prescription medications:
+                Due to the nature of business advisory services:
               </p>
               <ul className="list-disc list-inside text-[#E5E5E5] font-helvetica leading-relaxed space-y-3 ml-4">
-                <li><strong>Unopened Products:</strong> May be returned within 14 days of delivery if unopened and in original packaging. Shipping costs are non-refundable.</li>
-                <li><strong>Opened Products:</strong> Cannot be returned or refunded due to safety and regulatory requirements. Once a seal is broken, products cannot be resold.</li>
-                <li><strong>Defective Products:</strong> If you receive a damaged or defective product, contact us within 48 hours for a full replacement at no cost.</li>
-                <li><strong>Wrong Product Shipped:</strong> We will arrange immediate shipment of the correct product and cover return shipping.</li>
+                <li><strong>Monthly Retainers:</strong> May be cancelled with 30 days notice. Current month is non-refundable.</li>
+                <li><strong>Project-Based Engagements:</strong> Milestone payments are non-refundable once work has commenced.</li>
+                <li><strong>Unsatisfactory Results:</strong> If you're not seeing results, we'll work with you to adjust strategies at no additional cost.</li>
+                <li><strong>Service Issues:</strong> Any service delivery issues will be addressed immediately with make-good services.</li>
               </ul>
             </div>
 
@@ -81,7 +86,7 @@ export default function Refund() {
                 To initiate a return:
               </p>
               <ol className="list-decimal list-inside text-[#E5E5E5] font-helvetica leading-relaxed space-y-3 ml-4">
-                <li>Contact our support team at <a href="mailto:info@thepeptidemarket.com" className="text-[#FF6B35] hover:text-[#FF8C42] underline">info@thepeptidemarket.com</a> within the eligible timeframe</li>
+                <li>Contact our support team at <a href="mailto:info@hvactoequity.com" className="text-[#326ec2] hover:text-[#2958a3] underline">info@hvactoequity.com</a> within the eligible timeframe</li>
                 <li>Provide your order number and reason for return</li>
                 <li>Receive return authorization and shipping instructions</li>
                 <li>Ship the product back in original condition and packaging</li>
@@ -133,8 +138,8 @@ export default function Refund() {
               <h2 className="text-2xl font-helvetica font-bold text-white mb-4">Contact Us</h2>
               <p className="text-[#E5E5E5] font-helvetica leading-relaxed">
                 For returns, refunds, or questions about this policy, contact us at:{" "}
-                <a href="mailto:info@thepeptidemarket.com" className="text-[#FF6B35] hover:text-[#FF8C42] underline">
-                  info@thepeptidemarket.com
+                <a href="mailto:info@hvactoequity.com" className="text-[#326ec2] hover:text-[#2958a3] underline">
+                  info@hvactoequity.com
                 </a>
               </p>
             </div>

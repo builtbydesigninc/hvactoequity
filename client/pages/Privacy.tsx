@@ -1,17 +1,22 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Privacy() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0B0B0B] text-white">
       {/* Header */}
       <header className="border-b border-[#222222] px-6 sm:px-8 md:px-12 py-6">
         <div className="max-w-5xl mx-auto">
-          <Link to="/">
-            <img
-              src="/logos/dark.svg"
-              alt="the peptide market"
-              className="h-8 sm:h-10 w-auto"
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/assets/logo.png" 
+              alt="HVAC to Equity" 
+              className="h-10 sm:h-12 w-auto"
             />
           </Link>
         </div>
@@ -47,7 +52,7 @@ export default function Privacy() {
             {/* Intro */}
             <div>
               <p className="text-[#E5E5E5] font-helvetica leading-relaxed mb-4">
-                At The Peptide Market, we are committed to protecting your privacy and health information. This Privacy Policy explains how we collect, use, and safeguard your personal and medical data in compliance with HIPAA and applicable privacy laws.
+                At HVAC to Equity, we are committed to protecting your privacy and business information. This Privacy Policy explains how we collect, use, and safeguard your personal and business data in compliance with applicable privacy laws.
               </p>
             </div>
 
@@ -135,8 +140,8 @@ export default function Privacy() {
               </ul>
               <p className="text-[#E5E5E5] font-helvetica leading-relaxed mt-4">
                 To exercise these rights, contact us at{" "}
-                <a href="mailto:info@thepeptidemarket.com" className="text-[#FF6B35] hover:text-[#FF8C42] underline">
-                  info@thepeptidemarket.com
+                <a href="mailto:info@hvactoequity.com" className="text-[#326ec2] hover:text-[#2958a3] underline">
+                  info@hvactoequity.com
                 </a>
               </p>
             </div>
@@ -170,8 +175,8 @@ export default function Privacy() {
               <h2 className="text-2xl font-helvetica font-bold text-white mb-4">Contact Us</h2>
               <p className="text-[#E5E5E5] font-helvetica leading-relaxed">
                 For questions about this Privacy Policy or to exercise your privacy rights, contact us at:{" "}
-                <a href="mailto:info@thepeptidemarket.com" className="text-[#FF6B35] hover:text-[#FF8C42] underline">
-                  info@thepeptidemarket.com
+                <a href="mailto:info@hvactoequity.com" className="text-[#326ec2] hover:text-[#2958a3] underline">
+                  info@hvactoequity.com
                 </a>
               </p>
             </div>

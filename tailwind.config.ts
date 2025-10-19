@@ -74,6 +74,8 @@ export default {
         sans: ["Inter", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
         helvetica: ["Helvetica", "-apple-system", "Roboto", "sans-serif"],
         orpheus: ["Orpheus Pro", "Georgia", "serif"],
+        satoshi: ["Satoshi", "Inter", "-apple-system", "Roboto", "sans-serif"],
+        clash: ["Clash Display", "Inter", "-apple-system", "Roboto", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -105,6 +107,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s linear infinite",
+        aurora: "aurora 60s linear infinite",
       },
     },
   },

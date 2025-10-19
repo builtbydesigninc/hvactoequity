@@ -1,4 +1,4 @@
-import { ChevronRight, X } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { InfiniteMovingCards } from "../components/ui/infinite-moving-cards";
 import { EvervaultCard } from "../components/ui/evervault-card";
@@ -8,11 +8,45 @@ import { GlowingStarsBackgroundCard, GlowingStarsTitle, GlowingStarsDescription 
 import { Spotlight } from "../components/ui/spotlight-new";
 import { Lens } from "../components/ui/lens";
 import { FAQItem } from "../components/FAQItem";
-import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { BentoCard, BentoGrid } from "../components/ui/bento-grid";
+import { AnimatedList } from "../components/ui/animated-list";
+import { SparklesCore } from "../components/ui/sparkles";
+import { AuroraBackground } from "../components/ui/aurora-background";
+import { Marquee } from "../components/ui/marquee";
+import { DottedMap } from "../components/ui/dotted-map";
+import { motion } from "motion/react";
+import { useState, useEffect } from "react";
+import { Target, TrendingUp, Users, Zap, DollarSign, Building2 } from "lucide-react";
 
 export default function Index() {
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [activeView, setActiveView] = useState<"sellers" | "buyers">("sellers");
+  const [isSwitching, setIsSwitching] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Delay content animation until after initial loader
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 2200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleViewSwitch = (view: "sellers" | "buyers") => {
+    if (view !== activeView) {
+      setIsSwitching(true);
+      setShowContent(false);
+      setTimeout(() => {
+        setActiveView(view);
+        setTimeout(() => {
+          setIsSwitching(false);
+          setTimeout(() => {
+            setShowContent(true);
+          }, 100);
+        }, 100);
+      }, 2000);
+    }
+  };
+
   const trustBadges = [
     {
       icon: (
@@ -28,7 +62,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "Affordable Pricing with no hidden fees",
+      text: "400+ Businesses Successfully Scaled",
     },
     {
       icon: (
@@ -44,7 +78,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "FDA-registered pharmacies",
+      text: "$2B+ in Successful Exits",
     },
     {
       icon: (
@@ -60,7 +94,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "Free and Discrete Shipping on All Prescriptions",
+      text: "15 Years Industry Experience",
     },
     {
       icon: (
@@ -76,7 +110,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "100% Online Process",
+      text: "Proven Operational Systems",
     },
     {
       icon: (
@@ -97,7 +131,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "Private white label available",
+      text: "Tech-Enabled Growth Platform",
     },
     {
       icon: (
@@ -116,7 +150,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "Complete turnkey partner",
+      text: "Complete M&A Support",
     },
     {
       icon: (
@@ -132,7 +166,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "USA Made",
+      text: "Industry Veterans",
     },
     {
       icon: (
@@ -151,7 +185,7 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "Third party tested",
+      text: "95% Staff Retention Rate",
     },
     {
       icon: (
@@ -167,219 +201,252 @@ export default function Index() {
           />
         </svg>
       ),
-      text: "Research grade peptides",
+      text: "24-Month Exit Strategy",
     },
   ];
 
-  const categoryCards = [
-    {
-      category: "Injectables",
-      image: "/assets/pm injectable peptide bottle with injetcion.png",
-    },
-    {
-      category: "Topicals",
-      image: "/assets/pm topical cream bottle.png",
-    },
-    {
-      category: "Oral",
-      image: "/assets/pm pills blue and orange gradient.png",
-    },
-  ];
+  // Removed unused categoryCards - was showing peptide products
 
   return (
     <div className="min-h-screen bg-[#0B0B0B] text-white overflow-x-hidden">
-      {/* Announcement Bar */}
-      <AnimatePresence>
-        {showAnnouncement && (
-          <motion.div
-            initial={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative bg-gradient-to-r from-[#1A1A1A] via-[#252525] to-[#1A1A1A] overflow-hidden border-b border-[#2A2A2A]"
-          >
-            <div className="relative z-10 flex items-center justify-center gap-2 sm:gap-3 px-6 py-3">
-              <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="flex items-center gap-2 sm:gap-3"
-              >
-                <span className="inline-flex items-center gap-1.5 bg-[#FF6B35]/20 backdrop-blur-sm px-3 py-1 rounded-full border border-[#FF6B35]/30">
-                  <svg className="w-4 h-4 text-[#FF6B35]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  <span className="text-[#FF6B35] font-helvetica text-xs font-semibold uppercase tracking-wide">
-                    Limited Time
-                  </span>
-                </span>
-                <p className="text-[#E5E5E5] font-helvetica text-sm sm:text-base md:text-lg font-semibold">
-                  <span className="hidden sm:inline">Black Friday Sale: </span>
-                  <span className="font-bold text-[#FF6B35]">10% OFF</span> Entire Catalog
-                  <span className="hidden md:inline"> • Ends Soon</span>
-                </p>
-              </motion.div>
+      {/* Switching Loader */}
+      {isSwitching && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
+          <div className="relative">
+            <img 
+              src="/assets/logo.png" 
+              alt="HVAC to Equity" 
+              className="h-24 w-auto relative z-10"
+            />
+            <div 
+              className="absolute inset-0 flex items-start justify-center"
+              style={{ animation: 'scan 2s infinite' }}
+            >
+              <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#326ec2] to-transparent opacity-90 blur-sm" />
+              <div className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-[#4A90E2] to-transparent" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Floating Frosted Glass Header */}
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+        <div className="bg-black/40 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl shadow-black/50">
+          <div className="px-4 sm:px-6 md:px-8 py-3 sm:py-4">
+            <div className="flex items-center justify-between gap-4">
+              <Link to="/" className="flex items-center">
+                <img 
+                  src="/assets/logo.png" 
+                  alt="HVAC to Equity" 
+                  className="h-8 sm:h-9 md:h-11 w-auto"
+                />
+              </Link>
               
-              {/* Close Button */}
-              <button
-                onClick={() => setShowAnnouncement(false)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#9CA3AF] hover:text-white transition-colors p-1"
-                aria-label="Dismiss announcement"
-              >
-                <X className="w-5 h-5" />
+              {/* Desktop View - Both Buttons */}
+              <div className="hidden sm:flex gap-2 md:gap-3 items-center">
+                <button 
+                  onClick={() => handleViewSwitch("sellers")}
+                  className={`flex gap-2 items-center px-4 py-2 rounded-full cursor-pointer transition-all ${
+                    activeView === "sellers" ? "bg-white/20 hover:bg-white/25 shadow-lg shadow-white/10 border border-white/30" : "bg-white/5 hover:bg-white/10 border border-transparent"
+                  }`}
+                >
+                  <p className="font-satoshi font-semibold text-sm md:text-base text-white whitespace-nowrap">
+                    For Sellers
+                  </p>
+                  <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
+                </button>
+                <button 
+                  onClick={() => handleViewSwitch("buyers")}
+                  className={`flex gap-2 items-center px-4 py-2 rounded-full cursor-pointer transition-all ${
+                    activeView === "buyers" ? "bg-white/20 hover:bg-white/25 shadow-lg shadow-white/10 border border-white/30" : "bg-white/5 hover:bg-white/10 border border-transparent"
+                  }`}
+                >
+                  <p className="font-satoshi font-semibold text-sm md:text-base text-white whitespace-nowrap">
+                    For Buyers
+                  </p>
+                  <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
+                </button>
+              </div>
+              
+              {/* Mobile View - Dropdown */}
+              <div className="sm:hidden relative">
+                <select
+                  value={activeView}
+                  onChange={(e) => handleViewSwitch(e.target.value as "sellers" | "buyers")}
+                  className="appearance-none bg-white/20 border border-white/30 rounded-full px-4 py-2 pr-8 text-white font-satoshi font-semibold text-sm cursor-pointer hover:bg-white/25 transition-all focus:outline-none focus:ring-2 focus:ring-white/30"
+                >
+                  <option value="sellers" className="bg-[#1A1A1A] text-white">For Sellers</option>
+                  <option value="buyers" className="bg-[#1A1A1A] text-white">For Buyers</option>
+                </select>
+                <ChevronRight className="w-4 h-4 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none rotate-90 text-white" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* HVAC Header & Hero */}
+      <AuroraBackground className="relative min-h-screen overflow-hidden">
+        {/* Conditional Animation - Sparkles for Sellers */}
+        {activeView === "sellers" && (
+          <div className="absolute inset-0 w-full h-full z-[1]">
+            <SparklesCore
+              id="tsparticlesfullpage"
+              background="transparent"
+              minSize={0.3}
+              maxSize={0.8}
+              particleDensity={30}
+              className="w-full h-full"
+              particleColor="#4A90E2"
+              speed={0.5}
+            />
+          </div>
+        )}
+        <div className="relative z-10 flex flex-col gap-24 lg:gap-32 items-center px-6 sm:px-8 md:px-12 lg:px-[99px] pt-32 sm:pt-36 pb-16 sm:pb-20 w-full max-w-[1440px] mx-auto">
+          
+          {/* Hero Content */}
+            <div className="flex flex-col gap-6 sm:gap-8 lg:gap-[36px] items-center w-full max-w-[1117px]">
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="font-clash font-medium leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-[79.008px] text-center bg-gradient-to-r from-white via-[#4A90E2] to-white bg-clip-text text-transparent"
+            >
+              {activeView === "sellers" 
+                ? "Scale Your HVAC Business to 8-Figures and Beyond"
+                : "Acquire Profitable HVAC Businesses Ready to Scale"
+              }
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              className="font-satoshi font-normal leading-relaxed text-lg sm:text-xl md:text-2xl lg:text-[28px] text-center text-[#B8BCC8] max-w-[801px]"
+            >
+              {activeView === "sellers"
+                ? "The proven playbook to transform your HVAC company into a scalable, sellable asset worth millions"
+                : "Partner with proven operators to buy, build, and exit HVAC companies with 3-5x returns"
+              }
+            </motion.p>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={showContent ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              className="flex flex-col gap-4 items-center mt-4"
+            >
+              <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] flex items-center px-8 py-4 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                <p className="font-satoshi font-bold text-lg sm:text-xl text-white">
+                  {activeView === "sellers" ? "GET YOUR GROWTH ROADMAP" : "VIEW AVAILABLE OPPORTUNITIES"}
+                </p>
               </button>
+            </motion.div>
+          </div>
+        </div>
+      </AuroraBackground>
+
+      {/* Gradient Transition */}
+      <div className="h-32 bg-gradient-to-b from-black via-[#0B0B0B] to-[#0B0B0B]"></div>
+
+      {/* National Footprint Map Section */}
+      <div className="py-12 sm:py-16 md:py-20 bg-[#0B0B0B]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-12"
+          >
+            <h2 className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-4 bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent">
+              Global Network & Reach
+            </h2>
+            <p className="font-satoshi text-[#7A8196] text-lg max-w-2xl mx-auto">
+              Serving HVAC businesses across North America, Europe, and Australia with local expertise and global resources
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative h-[400px] sm:h-[500px] w-full overflow-hidden rounded-2xl border border-[#222] bg-gradient-to-b from-[#151515] to-[#0F0F10] p-8"
+          >
+            <DottedMap
+              markers={[
+                // United States - Major Markets
+                { lat: 32.7767, lng: -96.7970, size: 0.08 }, // Dallas, TX
+                { lat: 33.7490, lng: -84.3880, size: 0.06 }, // Atlanta, GA
+                { lat: 41.8781, lng: -87.6298, size: 0.07 }, // Chicago, IL
+                { lat: 34.0522, lng: -118.2437, size: 0.08 }, // Los Angeles, CA
+                { lat: 40.7128, lng: -74.0060, size: 0.09 }, // New York, NY
+                { lat: 25.7617, lng: -80.1918, size: 0.05 }, // Miami, FL
+                { lat: 47.6062, lng: -122.3321, size: 0.06 }, // Seattle, WA
+                { lat: 39.7392, lng: -104.9903, size: 0.05 }, // Denver, CO
+                { lat: 29.7604, lng: -95.3698, size: 0.07 }, // Houston, TX
+                { lat: 33.4484, lng: -112.0740, size: 0.06 }, // Phoenix, AZ
+                { lat: 37.7749, lng: -122.4194, size: 0.06 }, // San Francisco, CA
+                { lat: 42.3601, lng: -71.0589, size: 0.05 }, // Boston, MA
+                { lat: 39.2904, lng: -76.6122, size: 0.05 }, // Baltimore, MD
+                
+                // Canada
+                { lat: 43.6532, lng: -79.3832, size: 0.07 }, // Toronto, ON
+                { lat: 45.5017, lng: -73.5673, size: 0.06 }, // Montreal, QC
+                { lat: 49.2827, lng: -123.1207, size: 0.06 }, // Vancouver, BC
+                { lat: 51.0447, lng: -114.0719, size: 0.05 }, // Calgary, AB
+                
+                // Europe
+                { lat: 51.5074, lng: -0.1278, size: 0.08 }, // London, UK
+                { lat: 48.8566, lng: 2.3522, size: 0.07 }, // Paris, France
+                { lat: 52.5200, lng: 13.4050, size: 0.06 }, // Berlin, Germany
+                { lat: 41.9028, lng: 12.4964, size: 0.06 }, // Rome, Italy
+                { lat: 40.4168, lng: -3.7038, size: 0.06 }, // Madrid, Spain
+                { lat: 52.3676, lng: 4.9041, size: 0.05 }, // Amsterdam, Netherlands
+                
+                // Australia
+                { lat: -33.8688, lng: 151.2093, size: 0.08 }, // Sydney, NSW
+                { lat: -37.8136, lng: 144.9631, size: 0.07 }, // Melbourne, VIC
+                { lat: -27.4698, lng: 153.0251, size: 0.06 }, // Brisbane, QLD
+                { lat: -31.9505, lng: 115.8605, size: 0.05 }, // Perth, WA
+              ]}
+              dotColor="#1e3a5f"
+              markerColor="#4A90E2"
+              className="w-full h-full"
+            />
+            
+            {/* Stats overlay */}
+            <div className="absolute bottom-8 left-8 right-8 flex flex-wrap gap-4 sm:gap-8 justify-center">
+              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#326ec2]/30">
+                <p className="font-clash text-xl sm:text-2xl text-white">28+</p>
+                <p className="font-satoshi text-xs sm:text-sm text-[#7A8196]">Global Cities</p>
+              </div>
+              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#326ec2]/30">
+                <p className="font-clash text-xl sm:text-2xl text-white">4</p>
+                <p className="font-satoshi text-xs sm:text-sm text-[#7A8196]">Continents</p>
+              </div>
+              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#326ec2]/30">
+                <p className="font-clash text-xl sm:text-2xl text-white">24/7</p>
+                <p className="font-satoshi text-xs sm:text-sm text-[#7A8196]">Support</p>
+              </div>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Trust Banner */}
-      <div className="bg-[#111111] px-6 sm:px-8 md:px-12 py-6 md:py-7 overflow-hidden">
-        <div className="relative">
-          <div
-            className="pointer-events-none absolute inset-0 mask-fade z-[1]"
-            aria-hidden="true"
-          />
-          <div className="marquee flex items-center gap-6 sm:gap-8 md:gap-10 w-max [--duration:40s] hover:[animation-play-state:paused] motion-reduce:!animate-none">
-            {trustBadges.map((badge, index) => (
-              <div
-                key={`a-${index}`}
-                className="flex items-center gap-3 sm:gap-4"
-              >
-                <div className="flex-shrink-0">{badge.icon}</div>
-                <div className="text-[#E5E5E5] font-inter text-sm sm:text-base">
-                  {badge.text}
-                </div>
-              </div>
-            ))}
-            {trustBadges.map((badge, index) => (
-              <div
-                key={`b-${index}`}
-                className="flex items-center gap-3 sm:gap-4"
-              >
-                <div className="flex-shrink-0">{badge.icon}</div>
-                <div className="text-[#E5E5E5] font-inter text-sm sm:text-base">
-                  {badge.text}
-                </div>
-              </div>
-            ))}
-          </div>
+          
+          {/* CTA after Map */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mt-12 sm:mt-16 text-center"
+          >
+            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+            </button>
+          </motion.div>
         </div>
       </div>
 
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 backdrop-blur-2xl bg-black/60 border-b border-white/10 shadow-xl">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-28">
-          <div className="max-w-7xl mx-auto flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link to="/">
-              <img
-                src="/logos/dark.svg"
-                alt="the peptide market"
-                className="h-8 sm:h-10 w-auto"
-              />
-            </Link>
-            
-            {/* CTA Button */}
-            <ShimmerButton className="h-12 px-10 text-lg">
-              Apply Now
-            </ShimmerButton>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <div className="px-6 sm:px-8 md:px-12 lg:px-28 pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-6 sm:p-8 md:p-10 overflow-hidden">
-            <Spotlight
-              gradientFirst="radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(0, 0%, 90%, .05) 0, hsla(0, 0%, 70%, .02) 50%, hsla(0, 0%, 50%, 0) 80%)"
-              gradientSecond="radial-gradient(50% 50% at 50% 50%, hsla(0, 0%, 85%, .04) 0, hsla(0, 0%, 60%, .01) 80%, transparent 100%)"
-              gradientThird="radial-gradient(50% 50% at 50% 50%, hsla(0, 0%, 80%, .03) 0, hsla(0, 0%, 50%, .01) 80%, transparent 100%)"
-              translateY={-250}
-              width={400}
-              height={1000}
-              smallWidth={180}
-              duration={8}
-              xOffset={80}
-            />
-            {/* Main Content */}
-            <div className="flex flex-col gap-12 lg:gap-16">
-              {/* Hero Text */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="flex flex-col gap-6"
-              >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[91px] font-helvetica leading-tight">
-                  <div className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent mb-6">
-                    Peptides for
-                  </div>
-                  <LayoutTextFlip
-                    text=""
-                    words={[
-                      "Hair Regrowth",
-                      "Testosterone",
-                      "Weight Loss",
-                      "Sexual Wellness",
-                      "Muscle Growth",
-                      "Skin Care",
-                      "Immune System",
-                    ]}
-                    duration={3000}
-                  />
-                </h1>
-                <p className="text-[#9CA3AF] font-helvetica text-base sm:text-lg md:text-xl">
-                  Helping your patients and practice become profitable.
-                </p>
-              </motion.div>
-
-              {/* Cards Grid */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 w-full"
-              >
-                {categoryCards.map((card, index) => (
-                    <button
-                      key={index}
-                    className="rounded-xl p-6 flex flex-col gap-6 min-h-[320px] bg-[#111111] border border-[#222222] hover:shadow-lg hover:border-[#333] transition-all hover:-translate-y-1 cursor-pointer text-left w-full"
-                    >
-                      <div className="flex justify-between items-center">
-                      <div className="text-lg sm:text-xl font-helvetica">
-                        <span className="text-[#EAEAEA]">{card.category}</span>
-                        </div>
-                      <ChevronRight className="w-5 h-5 flex-shrink-0 text-[#FF6B35]" />
-                      </div>
-                      <Lens zoomFactor={2} lensSize={150}>
-                      <img
-                        src={card.image}
-                        alt={card.category}
-                        className="w-full h-52 sm:h-56 md:h-60 object-contain mx-auto"
-                      />
-                      </Lens>
-                    </button>
-                  ))}
-              </motion.div>
-
-              {/* Telehealth for Clinics - Minimal Bar */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-                className="mt-2 relative rounded-lg border border-[#2A2A2A] bg-gradient-to-r from-[#1A1A1A] to-[#151515] py-3 px-4 text-center overflow-hidden"
-              >
-                <p className="relative z-10 text-[#9CA3AF] font-helvetica text-sm sm:text-base italic">
-                  Add Turnkey Telehealth Services to Your Clinic
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Premium Peptide Solutions Section */}
+      {/* What Sets Us Apart Section */}
       <div className="px-6 sm:px-8 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-[#0B0B0B]">
         <div className="max-w-7xl mx-auto">
           <motion.h2
@@ -387,170 +454,137 @@ export default function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
+            className="bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
           >
-            Premium Peptide Solutions
+            What Sets Us Apart
+          </motion.h2>
+
+          <div className="relative flex h-[500px] w-full flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-[#0F0F10] to-[#151515] border border-[#222222] p-6">
+            <AnimatedList delay={1500}>
+              {Array.from({ length: 20 }, () => [
+                {
+                  name: "Industry Insiders",
+                  description: "Our team has operated, scaled, and sold HVAC companies. We've been in your shoes.",
+                  icon: <Users className="w-5 h-5" />,
+                },
+                {
+                  name: "Tech-Enabled Growth",
+                  description: "Proprietary software stack for dispatch, CRM, and operations that adds $2M+ in enterprise value",
+                  icon: <Zap className="w-5 h-5" />,
+                },
+                {
+                  name: "People First",
+                  description: "We retain your key employees and culture. 95% staff retention rate post-acquisition",
+                  icon: <Target className="w-5 h-5" />,
+                },
+              ]).flat().map((item, idx) => (
+                <div
+                  key={idx}
+                  className="relative mx-auto w-full max-w-3xl cursor-pointer overflow-hidden rounded-xl p-6 border border-[#2A2A2A] bg-gradient-to-b from-[#1A1A1A] to-[#151515] transition-all duration-200 ease-in-out hover:scale-[102%] hover:border-[#333]"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-[#326ec2]/20 to-[#4A90E2]/10 flex items-center justify-center border border-[#326ec2]/30">
+                      <div className="text-[#4A90E2]">
+                        {item.icon}
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-3 flex-1">
+                      <h3 className="text-xl font-bold bg-gradient-to-r from-white to-[#B8BCC8] bg-clip-text text-transparent font-satoshi">
+                        {item.name}
+                      </h3>
+                      <p className="text-[#B8BCC8] text-base leading-relaxed font-satoshi">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </AnimatedList>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0F0F10]"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* How We Work Section */}
+      <div className="px-6 sm:px-8 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-[#0B0B0B]">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
+          >
+            How We Work
           </motion.h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {/* Large Featured Card - Water Splash Bottle */}
-            <motion.button
+            {/* Large Featured Card */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="lg:row-span-3 relative overflow-hidden rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-8 sm:p-10 hover:border-[#333] transition-all cursor-pointer text-left"
+              className="lg:row-span-3 relative overflow-hidden rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-8 sm:p-10 hover:border-[#333] transition-all text-left"
             >
               <div className="flex flex-col h-full justify-center">
-                <div className="mb-6">
-                  <h3 className="text-white font-helvetica text-2xl sm:text-3xl font-bold mb-3">
-                    Pure Excellence
-            </h3>
-                  <p className="text-[#9CA3AF] font-helvetica text-base sm:text-lg leading-relaxed">
-                    Pure Excellence at 99.6% purity. Every product tested, verified, and optimized for maximum efficacy.
+                <div>
+                  <h3 className="text-white font-satoshi text-2xl sm:text-3xl font-bold mb-3">
+                    {activeView === "sellers" ? "Operational Excellence" : "Capital Partnership"}
+                  </h3>
+                  <p className="text-[#7A8196] font-satoshi text-base sm:text-lg leading-relaxed">
+                    {activeView === "sellers"
+                      ? "We implement proven systems that increased efficiency by 40% on average, from dispatch optimization to inventory management"
+                      : "$50M+ ready to deploy with flexible deal structures from $1M-$10M per acquisition"
+                    }
                   </p>
                 </div>
-                <div className="flex items-center justify-center flex-1 min-h-[380px]">
-                  <Lens zoomFactor={2.2} lensSize={200}>
-                    <img
-                      src="/assets/bottle in a water splash.png"
-                      alt="Premium peptides"
-                      className="w-full max-w-lg h-full object-contain scale-110"
-                    />
-                  </Lens>
-            </div>
-          </div>
-            </motion.button>
+              </div>
+            </motion.div>
 
-            {/* Top Right - Oral Peptides */}
-            <motion.button
+            {/* Top Right */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-              className="relative overflow-hidden rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-8 hover:border-[#333] transition-all cursor-pointer text-left"
+              className="relative overflow-hidden rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-8 hover:border-[#333] transition-all text-left"
             >
-              <div className="flex flex-col sm:flex-row items-center gap-6 h-full">
-                <div className="flex-1">
-                  <h3 className="text-white font-helvetica text-xl sm:text-2xl font-bold mb-2">
-                    Oral Formulations
-                  </h3>
-                  <p className="text-[#9CA3AF] font-helvetica text-sm sm:text-base leading-relaxed">
-                    Convenient Daily Protocols
-                  </p>
-        </div>
-                <div className="w-36 h-36 sm:w-40 sm:h-40 flex-shrink-0">
-                  <Lens zoomFactor={2} lensSize={140}>
-                    <img
-                      src="/assets/pm pills blue and orange gradient.png"
-                      alt="Oral peptides"
-                      className="w-full h-full object-contain"
-                    />
-                  </Lens>
-      </div>
+              <div className="flex flex-col gap-3 h-full">
+                <h3 className="text-white font-satoshi text-xl sm:text-2xl font-bold">
+                  {activeView === "sellers" ? "Financial Engineering" : "Operational Support"}
+                </h3>
+                <p className="text-[#7A8196] font-satoshi text-sm sm:text-base leading-relaxed">
+                  {activeView === "sellers"
+                    ? "Structure your books for maximum valuation. Our CFOs prepare your business for institutional buyers"
+                    : "Hands-on team of HVAC industry veterans to optimize operations post-acquisition"
+                  }
+                </p>
               </div>
-            </motion.button>
+            </motion.div>
 
-            {/* Middle Right - Subcutaneous Injectables */}
-            <motion.button
+            {/* Middle Right */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-              className="relative overflow-hidden rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-8 hover:border-[#333] transition-all cursor-pointer text-left"
+              className="relative overflow-hidden rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-8 hover:border-[#333] transition-all text-left"
             >
-              <div className="flex flex-col sm:flex-row items-center gap-6 h-full">
-                <div className="flex-1">
-                  <h3 className="text-white font-helvetica text-xl sm:text-2xl font-bold mb-2">
-                    Subcutaneous Injectables
-                  </h3>
-                  <p className="text-[#9CA3AF] font-helvetica text-sm sm:text-base leading-relaxed">
-                    Lyophilized Peptide Vials (Purity Tested)
-                  </p>
-                </div>
-                <div className="w-36 h-36 sm:w-40 sm:h-40 flex-shrink-0">
-                  <Lens zoomFactor={2} lensSize={140}>
-                    <img
-                      src="/assets/pm injectable peptide bottle with injetcion.png"
-                      alt="Subcutaneous Injectables"
-                      className="w-full h-full object-contain"
-                    />
-                  </Lens>
-      </div>
-              </div>
-            </motion.button>
-
-            {/* Bottom Right - Topical Solutions */}
-            <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-              className="relative overflow-hidden rounded-2xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-8 hover:border-[#333] transition-all cursor-pointer text-left"
-            >
-              <div className="flex flex-col sm:flex-row items-center gap-6 h-full">
-                <div className="flex-1">
-                  <h3 className="text-white font-helvetica text-xl sm:text-2xl font-bold mb-2">
-                    Topical Compounds
-                  </h3>
-                  <p className="text-[#9CA3AF] font-helvetica text-sm sm:text-base leading-relaxed">
-                    Transdermal Absorption Systems
-                  </p>
-                </div>
-                <div className="w-36 h-36 sm:w-40 sm:h-40 flex-shrink-0">
-                  <Lens zoomFactor={2} lensSize={140}>
-                    <img
-                      src="/assets/pm topical cream bottle.png"
-                      alt="Topical solutions"
-                      className="w-full h-full object-contain"
-                    />
-                  </Lens>
-                </div>
-              </div>
-            </motion.button>
-          </div>
-
-          {/* Bottom Stat Bar */}
-          <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              { stat: "100%", label: "FDA-registered pharmacies" },
-              { stat: "24/7", label: "Clinician support" },
-              { stat: "COA", label: "Docs available & 3rd party tested" },
-              { stat: "3-5", label: "Days discreet delivery" },
-            ].map((item, index) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                className="rounded-xl border border-[#222222] bg-gradient-to-b from-[#0F0F10] to-[#151515] p-6 text-center"
-              >
-                <div className="text-3xl sm:text-4xl font-helvetica font-bold bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent mb-2">
-                  {item.stat}
-                </div>
-                <p className="text-[#9CA3AF] font-helvetica text-sm">
-                  {item.label}
+              <div className="flex flex-col gap-3 h-full">
+                <h3 className="text-white font-satoshi text-xl sm:text-2xl font-bold">
+                  {activeView === "sellers" ? "Exit Strategy" : "Platform Building"}
+                </h3>
+                <p className="text-[#7A8196] font-satoshi text-sm sm:text-base leading-relaxed">
+                  {activeView === "sellers"
+                    ? "Clear 24-month path to exit with milestone-based value creation and buyer introductions"
+                    : "Roll-up strategy to create regional powerhouses with shared services and economies of scale"
+                  }
                 </p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
 
-          {/* CTA after stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-            className="mt-12 sm:mt-16 text-center"
-          >
-            <ShimmerButton className="h-14 sm:h-16 px-12 sm:px-16 text-lg sm:text-xl">
-              Apply Now
-            </ShimmerButton>
-            <p className="text-[#9CA3AF] font-helvetica text-sm mt-4">
-              FDA-registered pharmacies • Discreet shipping
-            </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -562,7 +596,7 @@ export default function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
+            className="bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
           >
             We're With You Every Step Of The Way
           </motion.h2>
@@ -572,51 +606,51 @@ export default function Index() {
             {/* Step 1 */}
             <GlowingStarsBackgroundCard className="bg-gradient-to-b from-[#0F0F10] to-[#151515] border-[#222222] !max-w-none !max-h-none !h-auto flex flex-col p-8">
               <div className="flex items-center gap-3 mb-4 w-full">
-                <div className="w-8 h-8 rounded-full border-2 border-white/40 flex items-center justify-center text-white font-helvetica font-bold text-sm flex-shrink-0">
+                <div className="w-8 h-8 rounded-full border-2 border-white/40 flex items-center justify-center text-white font-satoshi font-bold text-sm flex-shrink-0">
                   1
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-helvetica text-base sm:text-lg font-semibold break-words">
-                    Dedicated 24/7 Support
+                  <h3 className="text-white font-satoshi text-base sm:text-lg font-semibold break-words">
+                    Strategic Assessment
                   </h3>
                 </div>
               </div>
-              <p className="text-[#9CA3AF] font-helvetica text-sm leading-relaxed">
-                Access our online portal anytime for immediate assistance and real-time support.
+              <p className="text-[#7A8196] font-satoshi text-sm leading-relaxed">
+                Deep dive into your operations, financials, and market position to identify growth opportunities.
               </p>
             </GlowingStarsBackgroundCard>
 
             {/* Step 2 */}
             <GlowingStarsBackgroundCard className="bg-gradient-to-b from-[#0F0F10] to-[#151515] border-[#222222] !max-w-none !max-h-none !h-auto flex flex-col p-8">
               <div className="flex items-center gap-3 mb-4 w-full">
-                <div className="w-8 h-8 rounded-full border-2 border-white/40 flex items-center justify-center text-white font-helvetica font-bold text-sm flex-shrink-0">
+                <div className="w-8 h-8 rounded-full border-2 border-white/40 flex items-center justify-center text-white font-satoshi font-bold text-sm flex-shrink-0">
                   2
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-helvetica text-base sm:text-lg font-semibold break-words">
-                    100% Online Ordering
+                  <h3 className="text-white font-satoshi text-base sm:text-lg font-semibold break-words">
+                    Implementation & Growth
                   </h3>
                 </div>
               </div>
-              <p className="text-[#9CA3AF] font-helvetica text-sm leading-relaxed">
-                Order seamlessly online with no minimum order quantity required.
+              <p className="text-[#7A8196] font-satoshi text-sm leading-relaxed">
+                Deploy proven systems, optimize operations, and accelerate revenue growth with hands-on support.
               </p>
             </GlowingStarsBackgroundCard>
 
             {/* Step 3 */}
             <GlowingStarsBackgroundCard className="bg-gradient-to-b from-[#0F0F10] to-[#151515] border-[#222222] !max-w-none !max-h-none !h-auto flex flex-col p-8">
               <div className="flex items-center gap-3 mb-4 w-full">
-                <div className="w-8 h-8 rounded-full border-2 border-white/40 flex items-center justify-center text-white font-helvetica font-bold text-sm flex-shrink-0">
+                <div className="w-8 h-8 rounded-full border-2 border-white/40 flex items-center justify-center text-white font-satoshi font-bold text-sm flex-shrink-0">
                   3
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-helvetica text-base sm:text-lg font-semibold break-words">
-                    Fast Delivery
+                  <h3 className="text-white font-satoshi text-base sm:text-lg font-semibold break-words">
+                    Exit Preparation
                   </h3>
                 </div>
               </div>
-              <p className="text-[#9CA3AF] font-helvetica text-sm leading-relaxed">
-                Premium peptides shipped discreetly with ongoing optimization support.
+              <p className="text-[#7A8196] font-satoshi text-sm leading-relaxed">
+                Position for maximum valuation and connect with strategic buyers for optimal exit.
               </p>
             </GlowingStarsBackgroundCard>
           </div>
@@ -629,358 +663,13 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <ShimmerButton className="h-14 sm:h-16 px-12 sm:px-16 text-lg sm:text-xl">
-              Apply Now
-            </ShimmerButton>
+            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+            </button>
           </motion.div>
         </div>
       </div>
 
-      {/* Comparison Section */}
-      <div className="px-6 sm:px-8 md:px-12 lg:px-28 py-10 sm:py-12 md:py-16 bg-[#0B0B0B]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
-            {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="flex-1 max-w-[420px] lg:self-center"
-            >
-              <h2 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14 leading-tight">
-                No Hidden Fees, Ever
-              </h2>
-              <p className="text-[#9CA3AF] font-helvetica text-sm sm:text-base md:text-[18px] mb-6 sm:mb-7 md:mb-8 leading-relaxed">
-                We build community by focusing on real solutions, personalized care, science-backed supplements and root cause therapies paired with virtual appointments and accessible diagnostics make healthcare seamless and centered on you.
-              </p>
-              <ShimmerButton className="h-12 sm:h-14 md:h-16 px-10 sm:px-12 md:px-16 text-lg sm:text-xl md:text-2xl">
-                Apply Now
-              </ShimmerButton>
-              <p className="text-[#9CA3AF] font-helvetica text-sm mt-4">
-                FDA-registered pharmacies • Discreet shipping
-              </p>
-            </motion.div>
-
-            {/* Right Comparison Table */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-              className="flex-1 w-full max-w-[550px]"
-            >
-              {/* Table Headers */}
-              <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-end mb-4 sm:mb-5 md:mb-6 gap-x-3">
-                <div></div>
-                <div className="flex justify-center items-end">
-                  <img
-                    src="/logos/dark.svg"
-                    alt="the peptide market"
-                    className="h-5 sm:h-6 md:h-7 w-auto"
-                  />
-                </div>
-                <div className="text-[#E5E5E5] font-helvetica text-[9px] sm:text-[10px] uppercase text-center">
-                  OUR COMPETITORS
-                </div>
-                <div className="text-[#E5E5E5] font-helvetica text-[9px] sm:text-[10px] uppercase text-center">
-                  TRADITIONAL MEDICINE
-                </div>
-              </div>
-
-              {/* Comparison Rows */}
-              <div className="space-y-2 mb-4">
-                {/* Row: CONVENIENT */}
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] uppercase">
-                    CONVENIENT
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        d="M10.9574 20.1239L4.75732 13.9238L6.30734 12.3738L10.9574 17.0239L20.9373 7.04395L22.4873 8.59396L10.9574 20.1239Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        d="M10.9574 20.1239L4.75732 13.9238L6.30734 12.3738L10.9574 17.0239L20.9373 7.04395L22.4873 8.59396L10.9574 20.1239Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Row: MEMBERSHIP FEES */}
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] uppercase">
-                    MEMBERSHIP FEES
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <span className="text-white font-helvetica text-xs md:text-sm leading-none whitespace-nowrap font-semibold">
-                      $0
-                    </span>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <span className="text-white font-helvetica text-xs md:text-sm leading-none whitespace-nowrap font-semibold">
-                      $129+
-                    </span>
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <span className="text-white font-helvetica text-xs md:text-sm leading-none whitespace-nowrap font-semibold">
-                      $0
-                    </span>
-                  </div>
-                </div>
-
-                {/* Row: CONSULTATION FEES */}
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] uppercase">
-                    CONSULTATION FEES
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <span className="text-white font-helvetica text-xs md:text-sm leading-none whitespace-nowrap font-semibold">
-                      $0
-                    </span>
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <span className="text-white font-helvetica text-xs md:text-sm leading-none whitespace-nowrap font-semibold">
-                      $0
-                    </span>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <span className="text-white font-helvetica text-xs md:text-sm leading-none whitespace-nowrap font-semibold">
-                      $20+
-                    </span>
-                  </div>
-                </div>
-
-                {/* Row: TREATS ROOT CAUSE */}
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] uppercase">
-                    TREATS ROOT CAUSE
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        d="M10.9574 20.1239L4.75732 13.9238L6.30734 12.3738L10.9574 17.0239L20.9373 7.04395L22.4873 8.59396L10.9574 20.1239Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Row: LAB DRAWS */}
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] uppercase">
-                    LAB DRAWS
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        d="M10.9574 20.1239L4.75732 13.9238L6.30734 12.3738L10.9574 17.0239L20.9373 7.04395L22.4873 8.59396L10.9574 20.1239Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        d="M10.9574 20.1239L4.75732 13.9238L6.30734 12.3738L10.9574 17.0239L20.9373 7.04395L22.4873 8.59396L10.9574 20.1239Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Row: PROACTIVE */}
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] uppercase">
-                    PROACTIVE
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        d="M10.9574 20.1239L4.75732 13.9238L6.30734 12.3738L10.9574 17.0239L20.9373 7.04395L22.4873 8.59396L10.9574 20.1239Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Row: DATA DRIVEN */}
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] uppercase">
-                    DATA DRIVEN
-                  </div>
-                  <div className="h-9 md:h-10 rounded bg-[#000000] border border-[#2A2A2A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        d="M10.9574 20.1239L4.75732 13.9238L6.30734 12.3738L10.9574 17.0239L20.9373 7.04395L22.4873 8.59396L10.9574 20.1239Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                  <div className="h-9 md:h-10 rounded border border-[#1A1A1A] bg-[#050505] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 27 27" fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6.29473 6.49444C6.4477 6.34167 6.65504 6.25586 6.87123 6.25586C7.08742 6.25586 7.29477 6.34167 7.44773 6.49444L20.5005 19.5472C20.5806 19.6219 20.6449 19.7119 20.6895 19.812C20.7341 19.9121 20.7581 20.0201 20.76 20.1297C20.7619 20.2392 20.7418 20.348 20.7008 20.4496C20.6597 20.5512 20.5987 20.6434 20.5212 20.7209C20.4437 20.7984 20.3514 20.8594 20.2499 20.9005C20.1483 20.9415 20.0395 20.9616 19.9299 20.9597C19.8204 20.9578 19.7124 20.9338 19.6123 20.8892C19.5122 20.8446 19.4222 20.7803 19.3475 20.7002L6.29473 7.64744C6.14196 7.49447 6.05615 7.28713 6.05615 7.07094C6.05615 6.85475 6.14196 6.6474 6.29473 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M20.5006 6.49444C20.6534 6.6474 20.7392 6.85475 20.7392 7.07094C20.7392 7.28713 20.6534 7.49447 20.5006 7.64744L7.44787 20.7002C7.29322 20.8443 7.08868 20.9227 6.87733 20.919C6.66599 20.9153 6.46434 20.8297 6.31487 20.6802C6.1654 20.5307 6.07978 20.3291 6.07605 20.1177C6.07233 19.9064 6.15078 19.7018 6.29488 19.5472L19.3476 6.49444C19.5006 6.34167 19.7079 6.25586 19.9241 6.25586C20.1403 6.25586 20.3477 6.34167 20.5006 6.49444Z"
-                        fill="#E5E5E5"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* Total Cost Row */}
-              <div className="pt-3 sm:pt-4 border-t border-[#222222]">
-                <div className="grid grid-cols-[100px_1fr_1fr_1fr] md:grid-cols-[110px_1fr_1fr_1fr] items-center gap-x-3">
-                  <div className="text-[#E5E5E5] font-helvetica text-[9px] font-bold uppercase">
-                    TOTAL COST
-                  </div>
-                  <div className="py-1.5 flex justify-center">
-                    <span className="text-white font-helvetica text-xs sm:text-sm md:text-base font-bold">
-                      $0
-                    </span>
-                  </div>
-                  <div className="py-1.5 flex justify-center">
-                    <span className="text-white font-helvetica text-xs sm:text-sm md:text-base font-bold">
-                      $129+
-                    </span>
-                  </div>
-                  <div className="py-1.5 flex justify-center">
-                    <span className="text-white font-helvetica text-xs sm:text-sm md:text-base font-bold">
-                      $20+
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
 
       {/* Our Team Section */}
       <div className="px-6 sm:px-8 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-[#0B0B0B]">
@@ -990,7 +679,7 @@ export default function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
+            className="bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
           >
             Our Team
           </motion.h2>
@@ -1026,9 +715,9 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <ShimmerButton className="h-14 sm:h-16 px-12 sm:px-16 text-lg sm:text-xl">
-              Apply Now
-            </ShimmerButton>
+            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+            </button>
           </motion.div>
         </div>
       </div>
@@ -1041,32 +730,32 @@ export default function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
+            className="bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
           >
-            Trusted By Clinics Across The US
+            Success Stories
           </motion.h2>
 
           <InfiniteMovingCards
             items={[
               {
-                quote: "Switching to Peptide Market changed everything for us. Not only are we getting faster peptide shipments, but our margins improved by at least 30%. Their team helped us stay compliant in all 50 states — total game changer.",
-                name: "Dr. Emily Rodriguez",
-                title: "Clinic Owner – Miami, FL",
+                quote: "HVAC to Equity helped us implement zone-based routing that cut fuel costs by 35% and increased daily jobs by 50%",
+                name: "Dave Johnson, Founder",
+                title: "Johnson HVAC • From $3M to $15M in 3 years",
               },
               {
-                quote: "We were struggling to find a reliable peptide supplier. Now we get access to over 60 U.S.-made peptides, delivered fast — and our patients love the results. The onboarding was seamless.",
-                name: "Jonathan Blake",
-                title: "Wellness Practice Owner – Austin, TX",
+                quote: "They prepared us for acquisition and introduced us to 5 strategic buyers. The bidding war was incredible",
+                name: "Sarah Chen, CEO",
+                title: "Elite Mechanical • Sold for 5.2x EBITDA",
               },
               {
-                quote: "Their telehealth setup saved us months of legal headaches. We launched our medical weight loss program in less than two weeks with full physician coverage and compliance support.",
-                name: "Sarah Kim, NP",
-                title: "Los Angeles, CA",
+                quote: "Their financial restructuring alone added $2M to our valuation",
+                name: "Mike Rodriguez, Owner",
+                title: "AirPro Services • 140% revenue growth in 18 months",
               },
               {
-                quote: "The Peptide Market platform feels like it was built for high-performing clinics. From the telemedicine tools to the sleek branding, everything just works. It makes us look and operate like a national brand.",
-                name: "Dr. Kevin Patel",
-                title: "Men's Health Specialist – Scottsdale, AZ",
+                quote: "The operational systems they implemented transformed how we run our business. We're now doing twice the volume with the same team size",
+                name: "Lisa Martinez, COO",
+                title: "Climate Control Pro • Scaled to 8 locations",
               },
             ]}
             direction="left"
@@ -1082,9 +771,9 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <ShimmerButton className="h-14 sm:h-16 px-12 sm:px-16 text-lg sm:text-xl">
-              Apply Now
-            </ShimmerButton>
+            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+            </button>
           </motion.div>
         </div>
       </div>
@@ -1095,53 +784,53 @@ export default function Index() {
           <div className="flex flex-col gap-[25px]">
             <FAQItem
               variant="dark"
-              question="What is the peptide market?"
-              answer="The peptide market is a comprehensive platform offering personalized healthcare solutions around supplying peptides, hormone therapy, and telehealth services. We focus on only the highest purity Lyophilized peptides to our clients. Accessible, data-driven care tailored to your specific needs."
+              question="What is HVAC to Equity?"
+              answer="HVAC to Equity is a specialized growth advisory firm that helps HVAC business owners scale their operations, optimize financials, and prepare for lucrative exits. We combine operational expertise, financial engineering, and strategic planning to transform local HVAC companies into institutional-grade assets."
             />
             <FAQItem
               variant="dark"
-              question="Why Add Peptides To Your Traditional Medical Practice Or Clinic?"
-              answer="The sentiment towards using progressive medicine is increasing at an unprecedented rate. We have taken a proactive, data-driven approach to where the healthcare market is headed. So why not offer Peptides to treat your patients and clients in a controlled environment then have them go to less experienced and skilled people at an amazing markup. The best part is this requires no extra work on your part to add an extra 5-7 figures to your business. We help you offer convenient direct to patient delivery and virtual appointments."
+              question="How do you help HVAC businesses scale?"
+              answer="We implement proven operational systems, optimize your financials, and create a strategic growth plan tailored to your business. Our team has scaled 400+ HVAC companies using our proprietary methodology that focuses on efficiency, profitability, and enterprise value creation."
             />
             <FAQItem
               variant="dark"
-              question="How Pure are your peptides?"
-              answer="Our pharmaceutical grade lyophilized peptides are third party batch tested at 99.6% purity. Highest available on the market. COA toxin documentations are available for each batch."
+              question="What kind of results can I expect?"
+              answer="Our clients typically see 40% operational efficiency gains within 6 months, 2-3x revenue growth within 24 months, and valuation multiples that increase from 3-4x to 5-7x EBITDA. Results vary based on starting point and commitment level."
             />
             <FAQItem
               variant="dark"
-              question="How Do I Work With Peptide Market?"
-              answer="Our application process is simple and convenient. If approved, your Clinic Launch Liaison will directly set you up on our platform to get you started offering peptides to your patients immediately."
+              question="How do I get started with HVAC to Equity?"
+              answer="Start with a free strategy session where we assess your business and create a custom growth roadmap. If it's a good fit, we'll partner with you to implement proven systems and scale your operations over 12-24 months."
             />
             <FAQItem
               variant="dark"
-              question="Are there any membership or consultation fees?"
-              answer="No, we pride ourselves on transparent pricing with no hidden fees. Unlike our competitors who charge $129+ in membership fees, we offer consultations at $0 cost. You only pay for your prescribed treatments."
+              question="What are the fees and investment required?"
+              answer="We offer flexible engagement models from monthly consulting retainers starting at $5,000/month to equity partnerships for qualified businesses. Your initial strategy session is complimentary. We structure deals based on your specific needs and growth stage."
             />
             <FAQItem
               variant="dark"
-              question="What makes you different from traditional medicine?"
-              answer="We take a proactive, data-driven approach to healthcare. Our treatments address root causes rather than just symptoms, and we offer convenient at-home lab draws and virtual appointments. Plus, there are no consultation fees like you'd find with traditional medicine."
+              question="What makes you different from other business consultants?"
+              answer="Unlike generic consultants, our team has operated, scaled, and sold HVAC companies. We don't just advise—we implement. Our proprietary software stack, hands-on approach, and proven playbook have generated over $2B in successful exits across 400+ businesses."
             />
             <FAQItem
               variant="dark"
-              question="Is the treatment safe and FDA-approved?"
-              answer="Yes, all our treatments are dispensed through FDA-registered pharmacies and prescribed by board-certified physicians. We ensure the highest standards of safety and quality in all our products and services."
+              question="Do you work with businesses of all sizes?"
+              answer="We primarily work with established HVAC companies doing $2M-$50M in annual revenue. However, we evaluate each business individually. If you're doing $1M+ and have strong growth potential, we encourage you to apply for a strategy session."
             />
             <FAQItem
               variant="dark"
-              question="How long does shipping take?"
-              answer="We offer free and discreet shipping on all prescriptions. Most orders are delivered within 3-5 business days. All packages are shipped in unmarked, discreet packaging to protect your privacy."
+              question="How long does the process take?"
+              answer="Our typical engagement is 12-24 months from initial implementation to exit readiness. Quick wins happen in the first 90 days, with significant operational improvements by month 6. Exit preparation and buyer introductions typically begin around month 18."
             />
             <FAQItem
               variant="dark"
-              question="Do you price match competitors?"
-              answer="Not only will we price match, but if we can beat their pricing we will. This will be rare as we already offer the best pricing in the peptide market!"
+              question="Can you guarantee results?"
+              answer="While we can't guarantee specific outcomes, we have a proven track record with 400+ successful engagements and $2B+ in exits. We only take on clients we believe we can help, and our results speak for themselves. If we don't think we're a fit, we'll tell you upfront."
             />
             <FAQItem
               variant="dark"
-              question="Do you have Minimum Order Quantities?"
-              answer="No! We are your partner and scale up or down according to your needs."
+              question="Do I have to sell my business?"
+              answer="No! Many of our clients work with us purely for growth and never sell. Our systems create value whether you want to scale and hold, pass to family, or eventually exit. The choice is always yours."
             />
           </div>
 
@@ -1153,12 +842,12 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-12 sm:mt-16 text-center"
           >
-            <p className="text-[#E5E5E5] font-helvetica text-lg sm:text-xl mb-6">
+            <p className="text-[#E5E5E5] font-satoshi text-lg sm:text-xl mb-6">
               Still Have Questions? Our Team Is Here To Help.
             </p>
-            <ShimmerButton className="h-14 sm:h-16 px-12 sm:px-16 text-lg sm:text-xl">
-              Apply Now
-            </ShimmerButton>
+            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+            </button>
           </motion.div>
         </div>
       </div>
@@ -1176,11 +865,11 @@ export default function Index() {
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 max-w-[1090px] mx-auto">
               {/* Left Content */}
               <div className="flex flex-col gap-6 max-w-[450px] w-full">
-                <h2 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-3xl sm:text-4xl md:text-5xl leading-tight">
-                  Learn The Benefits Of Adding Peptides To Your Practice?
+                <h2 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-satoshi text-3xl sm:text-4xl md:text-5xl leading-tight">
+                  Ready to Scale Your HVAC Business?
                 </h2>
-                <p className="text-[#9CA3AF] font-helvetica text-base sm:text-lg leading-relaxed">
-                  Stay updated with industry insights, best practices, and exclusive offers.
+                <p className="text-[#7A8196] font-satoshi text-base sm:text-lg leading-relaxed">
+                  Get exclusive insights, case studies, and growth strategies delivered to your inbox.
                 </p>
               </div>
 
@@ -1190,13 +879,13 @@ export default function Index() {
                   <input
                     type="email"
                     placeholder="Email"
-                    className="w-full px-6 py-[21px] rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] text-white placeholder:text-[#666] font-helvetica text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-[#4A5568]"
+                    className="w-full px-6 py-[21px] rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] text-white placeholder:text-[#666] font-satoshi text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-[#4A5568]"
                   />
-                  <ShimmerButton className="w-full text-base sm:text-lg">
-                    Sign up for the newsletter today
-                  </ShimmerButton>
+                  <button className="w-full bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-6 py-4 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
+                    <span className="font-satoshi font-bold text-base sm:text-lg text-white">Sign up for the newsletter today</span>
+                  </button>
                 </div>
-                <p className="text-[#9CA3AF] font-helvetica text-sm">
+                <p className="text-[#7A8196] font-satoshi text-sm">
                   By creating an account using email, I agree to the{" "}
                   <Link
                     to="/terms"
@@ -1223,35 +912,44 @@ export default function Index() {
       <footer className="relative bg-[#0B0B0B] border-t border-[#222222] px-0 py-12 sm:py-16 md:py-20 lg:py-[87px]">
         <div className="relative z-[1] max-w-[1410px] mx-auto px-6 sm:px-8 pb-[clamp(80px,14vw,260px)]">
           <div className="flex flex-col gap-16 sm:gap-20 md:gap-[91px]">
+            {/* Logo at top of footer */}
+            <div className="flex justify-center">
+              <img 
+                src="/assets/logo.png" 
+                alt="HVAC to Equity" 
+                className="h-16 sm:h-20 w-auto opacity-80"
+              />
+            </div>
+            
             {/* Footer Links */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-[187px]">
               {/* Navigation Column */}
               <div className="flex flex-col gap-[22px]">
-                <h3 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-2xl sm:text-3xl md:text-[31px] font-bold">
+                <h3 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-satoshi text-2xl sm:text-3xl md:text-[31px] font-bold">
                   Navigation
                 </h3>
                 <nav className="flex flex-col gap-[14px]">
                   <a
                     href="#"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
                     Home
                   </a>
                   <a
                     href="#"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
                     Shop / Catalog
                   </a>
                   <a
                     href="#"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
                     About
                   </a>
                   <a
                     href="#"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
                     FAQs
                   </a>
@@ -1260,48 +958,48 @@ export default function Index() {
 
               {/* Legal & Compliance Column */}
               <div className="flex flex-col gap-[22px]">
-                <h3 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-2xl sm:text-3xl md:text-[31px] font-bold">
+                <h3 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-satoshi text-2xl sm:text-3xl md:text-[31px] font-bold">
                   Legal & Compliance
                 </h3>
                 <nav className="flex flex-col gap-[14px]">
                   <Link
                     to="/terms"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
                     Terms & Conditions
                   </Link>
                   <Link
                     to="/privacy"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
                     Privacy Policy
                   </Link>
                   <Link
                     to="/refund"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
                     Return / Refund Policy
                   </Link>
                   <Link
-                    to="/hipaa"
-                    className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
+                    to="/confidentiality"
+                    className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px] hover:text-white transition-colors"
                   >
-                    HIPAA Compliance Notice
+                    Confidentiality Agreement
                   </Link>
                 </nav>
               </div>
 
               {/* Contact Column */}
               <div className="flex flex-col gap-[22px]">
-                <h3 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-helvetica text-2xl sm:text-3xl md:text-[31px] font-bold">
+                <h3 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-satoshi text-2xl sm:text-3xl md:text-[31px] font-bold">
                   Contact
                 </h3>
                 <div className="flex flex-col gap-[14px]">
-                  <p className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px]">
-                    Email: info@thepeptidemarket.com
+                  <p className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px]">
+                    Email: info@hvactoequity.com
                   </p>
-                  <p className="text-[#9CA3AF] font-helvetica text-lg sm:text-xl md:text-[20px]">
-                    Address: 5900 Balcones Drive Suite 100, Austin, TX, 78731
+                  <p className="text-[#7A8196] font-satoshi text-lg sm:text-xl md:text-[20px]">
+                    Address: 123 Business Center Way, Suite 500, Dallas, TX, 75201
                   </p>
                 </div>
               </div>
@@ -1309,24 +1007,13 @@ export default function Index() {
 
             {/* Footer Bottom */}
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-8">
-              <p className="text-[#9CA3AF] font-helvetica text-sm sm:text-base">
-                © 2025 The Peptide Market™
+              <p className="text-[#7A8196] font-satoshi text-sm sm:text-base">
+                © 2025 HVAC to Equity™
               </p>
-              <p className="text-[#9CA3AF] font-helvetica text-sm sm:text-base text-center">
-                Complete Peptide Solutions for Modern Medicine.
+              <p className="text-[#7A8196] font-satoshi text-sm sm:text-base text-center">
+                Transforming HVAC Businesses into Institutional Assets.
               </p>
             </div>
-
-            {/* Watermark handled by absolute element below */}
-          </div>
-        </div>
-        {/* Absolute full-width watermark with 10px margins */}
-        <div
-          aria-hidden
-          className="pointer-events-none select-none absolute left-0 right-0 bottom-[10px] z-0 overflow-hidden px-2"
-        >
-          <div className="w-full text-white/15 font-orpheus font-bold leading-none text-center text-[clamp(28px,10vw,240px)] uppercase tracking-tight">
-            PEPTIDE MARKET
           </div>
         </div>
       </footer>
