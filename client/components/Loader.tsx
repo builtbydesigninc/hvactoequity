@@ -18,11 +18,11 @@ const Loader = () => {
       }}
       id="app-loader"
     >
-      <div className="relative">
+      <div className="relative px-4">
         <img 
           src="/assets/logo.png" 
           alt="HVAC to Equity" 
-          className="h-24 w-auto relative z-10"
+          className="h-16 sm:h-20 md:h-24 w-auto relative z-10 max-w-[90vw]"
         />
         
         {/* Scanner effect */}

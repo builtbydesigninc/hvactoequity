@@ -212,11 +212,11 @@ export default function Index() {
       {/* Switching Loader */}
       {isSwitching && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black">
-          <div className="relative">
+          <div className="relative px-4">
             <img 
               src="/assets/logo.png" 
               alt="HVAC to Equity" 
-              className="h-24 w-auto relative z-10"
+              className="h-16 sm:h-20 md:h-24 w-auto relative z-10 max-w-[90vw]"
             />
             <div 
               className="absolute inset-0 flex items-start justify-center"
@@ -346,105 +346,6 @@ export default function Index() {
 
       {/* Gradient Transition */}
       <div className="h-32 bg-gradient-to-b from-black via-[#0B0B0B] to-[#0B0B0B]"></div>
-
-      {/* National Footprint Map Section */}
-      <div className="py-12 sm:py-16 md:py-20 bg-[#0B0B0B]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-4 bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent">
-              Global Network & Reach
-            </h2>
-            <p className="font-satoshi text-[#7A8196] text-lg max-w-2xl mx-auto">
-              Serving HVAC businesses across North America, Europe, and Australia with local expertise and global resources
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative h-[400px] sm:h-[500px] w-full overflow-hidden rounded-2xl border border-[#222] bg-gradient-to-b from-[#151515] to-[#0F0F10] p-8"
-          >
-            <DottedMap
-              markers={[
-                // United States - Major Markets
-                { lat: 32.7767, lng: -96.7970, size: 0.08 }, // Dallas, TX
-                { lat: 33.7490, lng: -84.3880, size: 0.06 }, // Atlanta, GA
-                { lat: 41.8781, lng: -87.6298, size: 0.07 }, // Chicago, IL
-                { lat: 34.0522, lng: -118.2437, size: 0.08 }, // Los Angeles, CA
-                { lat: 40.7128, lng: -74.0060, size: 0.09 }, // New York, NY
-                { lat: 25.7617, lng: -80.1918, size: 0.05 }, // Miami, FL
-                { lat: 47.6062, lng: -122.3321, size: 0.06 }, // Seattle, WA
-                { lat: 39.7392, lng: -104.9903, size: 0.05 }, // Denver, CO
-                { lat: 29.7604, lng: -95.3698, size: 0.07 }, // Houston, TX
-                { lat: 33.4484, lng: -112.0740, size: 0.06 }, // Phoenix, AZ
-                { lat: 37.7749, lng: -122.4194, size: 0.06 }, // San Francisco, CA
-                { lat: 42.3601, lng: -71.0589, size: 0.05 }, // Boston, MA
-                { lat: 39.2904, lng: -76.6122, size: 0.05 }, // Baltimore, MD
-                
-                // Canada
-                { lat: 43.6532, lng: -79.3832, size: 0.07 }, // Toronto, ON
-                { lat: 45.5017, lng: -73.5673, size: 0.06 }, // Montreal, QC
-                { lat: 49.2827, lng: -123.1207, size: 0.06 }, // Vancouver, BC
-                { lat: 51.0447, lng: -114.0719, size: 0.05 }, // Calgary, AB
-                
-                // Europe
-                { lat: 51.5074, lng: -0.1278, size: 0.08 }, // London, UK
-                { lat: 48.8566, lng: 2.3522, size: 0.07 }, // Paris, France
-                { lat: 52.5200, lng: 13.4050, size: 0.06 }, // Berlin, Germany
-                { lat: 41.9028, lng: 12.4964, size: 0.06 }, // Rome, Italy
-                { lat: 40.4168, lng: -3.7038, size: 0.06 }, // Madrid, Spain
-                { lat: 52.3676, lng: 4.9041, size: 0.05 }, // Amsterdam, Netherlands
-                
-                // Australia
-                { lat: -33.8688, lng: 151.2093, size: 0.08 }, // Sydney, NSW
-                { lat: -37.8136, lng: 144.9631, size: 0.07 }, // Melbourne, VIC
-                { lat: -27.4698, lng: 153.0251, size: 0.06 }, // Brisbane, QLD
-                { lat: -31.9505, lng: 115.8605, size: 0.05 }, // Perth, WA
-              ]}
-              dotColor="#1e3a5f"
-              markerColor="#4A90E2"
-              className="w-full h-full"
-            />
-            
-            {/* Stats overlay */}
-            <div className="absolute bottom-8 left-8 right-8 flex flex-wrap gap-4 sm:gap-8 justify-center">
-              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#326ec2]/30">
-                <p className="font-clash text-xl sm:text-2xl text-white">28+</p>
-                <p className="font-satoshi text-xs sm:text-sm text-[#7A8196]">Global Cities</p>
-              </div>
-              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#326ec2]/30">
-                <p className="font-clash text-xl sm:text-2xl text-white">4</p>
-                <p className="font-satoshi text-xs sm:text-sm text-[#7A8196]">Continents</p>
-              </div>
-              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-4 py-2 border border-[#326ec2]/30">
-                <p className="font-clash text-xl sm:text-2xl text-white">24/7</p>
-                <p className="font-satoshi text-xs sm:text-sm text-[#7A8196]">Support</p>
-              </div>
-            </div>
-          </motion.div>
-          
-          {/* CTA after Map */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mt-12 sm:mt-16 text-center"
-          >
-            <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-              <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
-            </button>
-          </motion.div>
-        </div>
-      </div>
 
       {/* What Sets Us Apart Section */}
       <div className="px-6 sm:px-8 md:px-12 lg:px-28 py-12 sm:py-16 md:py-20 bg-[#0B0B0B]">
@@ -688,8 +589,8 @@ export default function Index() {
               { image: "/headshots/Ash Rahman.png", name: "Ash Rahman", title: "CEO" },
               { image: "/headshots/Muhammad Bin Sohail.png", name: "Muhammad Bin Sohail", title: "Head of Technology" },
               { image: "/headshots/Oliver Ibrahim.png", name: "Oliver Ibrahim", title: "Head of Marketing" },
-              { image: "/headshots/Gaelle Semaan.png", name: "Gaelle Semaan", title: "Clinic Launch Liaison" },
-              { image: "/headshots/Jimmy.png", name: "Jimmy", title: "Head of Sales" },
+              { image: "/headshots/Gaelle Semaan.png", name: "Gaelle Semaan", title: "Head of Sales" },
+              { image: "/headshots/Jimmy.png", name: "Jimmy", title: "Head of Equity Partnerships" },
             ].map((member, index) => (
               <motion.div
                 key={member.name}
