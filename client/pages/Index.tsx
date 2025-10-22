@@ -324,7 +324,7 @@ export default function Index() {
               className="font-satoshi font-normal leading-relaxed text-lg sm:text-xl md:text-2xl lg:text-[28px] text-center text-[#B8BCC8] max-w-[801px]"
             >
               {activeView === "sellers"
-                ? "The proven playbook to transform your HVAC company into a scalable, sellable asset worth millions"
+                ? "The proven playbook to scale your HVAC company past $20M+ and build a premium, sellable asset without losing control."
                 : "Partner with proven operators to buy, build, and exit HVAC companies with 3-5x returns"
               }
             </motion.p>
@@ -337,7 +337,7 @@ export default function Index() {
               <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
                 <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] flex items-center px-8 py-4 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
                   <p className="font-satoshi font-bold text-lg sm:text-xl text-white">
-                    {activeView === "sellers" ? "GET YOUR GROWTH ROADMAP" : "VIEW AVAILABLE OPPORTUNITIES"}
+                    {activeView === "sellers" ? "Start My Scale & Exit Plan" : "VIEW AVAILABLE OPPORTUNITIES"}
                   </p>
                 </button>
               </a>
@@ -359,7 +359,7 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
           >
-            What Sets Us Apart
+            Your 'Done-for-You' System for 8-Figure Growth
           </motion.h2>
 
           <div className="relative flex h-[500px] w-full flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-[#0F0F10] to-[#151515] border border-[#222222] p-6">
@@ -376,8 +376,8 @@ export default function Index() {
                   icon: <Zap className="w-5 h-5" />,
                 },
                 {
-                  name: "People First",
-                  description: "We retain your key employees and culture. 95% staff retention rate post-acquisition",
+                  name: "Done-for-You System Implementation",
+                  description: "We build and implement your new systems for you, giving you the freedom to work on your business. We are your partners, not another DIY tool to waste time learning instead of benefitting.",
                   icon: <Target className="w-5 h-5" />,
                 },
               ]).flat().map((item, idx) => (
@@ -568,7 +568,7 @@ export default function Index() {
           >
             <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
               <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply for Your Strategic Assessment</span>
               </button>
             </a>
           </motion.div>
@@ -622,7 +622,7 @@ export default function Index() {
           >
             <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
               <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply for Your Strategic Assessment</span>
               </button>
             </a>
           </motion.div>
@@ -639,7 +639,7 @@ export default function Index() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="bg-gradient-to-r from-[#9CA3AF] via-[#4A90E2] to-[#9CA3AF] bg-clip-text text-transparent font-clash text-3xl sm:text-4xl md:text-5xl lg:text-[52px] mb-10 sm:mb-12 md:mb-14"
           >
-            Success Stories
+            Owners That Regained 8-Figure Freedom
           </motion.h2>
 
           <InfiniteMovingCards
@@ -680,7 +680,7 @@ export default function Index() {
           >
             <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
               <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply for Your Strategic Assessment</span>
               </button>
             </a>
           </motion.div>
@@ -756,7 +756,7 @@ export default function Index() {
             </p>
             <a href="https://api.leadconnectorhq.com/widget/booking/MeVlwNXClcMGEH3GZWxY" target="_blank" rel="noopener noreferrer">
               <button className="bg-gradient-to-r from-[#1e3a5f] via-[#326ec2] to-[#1e3a5f] px-12 sm:px-16 py-4 sm:py-5 rounded-full cursor-pointer hover:from-[#326ec2] hover:via-[#4A90E2] hover:to-[#326ec2] transition-all shadow-2xl shadow-[#326ec2]/40 transform hover:scale-105 border border-[#326ec2]/30">
-                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply Now</span>
+                <span className="font-satoshi font-bold text-lg sm:text-xl text-white">Apply for Your Strategic Assessment</span>
               </button>
             </a>
           </motion.div>
@@ -777,10 +777,10 @@ export default function Index() {
               {/* Left Content */}
               <div className="flex flex-col gap-6 max-w-[450px] w-full">
                 <h2 className="bg-gradient-to-r from-[#9CA3AF] to-[#E5E7EB] bg-clip-text text-transparent font-satoshi text-3xl sm:text-4xl md:text-5xl leading-tight">
-                  Ready to Scale Your HVAC Business?
+                  Ready to Start Working On Your Business Instead of In it?
                 </h2>
                 <p className="text-[#7A8196] font-satoshi text-base sm:text-lg leading-relaxed">
-                  Get exclusive insights, case studies, and growth strategies delivered to your inbox.
+                  Get Easy-to-do, massively impactful strategies in your inbox.
                 </p>
               </div>
 
